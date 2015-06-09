@@ -11,7 +11,7 @@ Using this plugin requires Android PhoneGap. It has been successfully tested on 
 To install the plugin
 
 ```````html
-cordova plugin add https://github.com/antonioJASR/FileOpener.git
+cordova plugin add https://github.com/hideov/FileOpener.git
 ```````
 
 Using the plugin
@@ -32,6 +32,9 @@ After you run the command above, Android device will either open the file with p
 
 RELEASE NOTES
 -------------
+June 9, 2015
+Check for extension done at the end of the string rather than inside.
+
 November 6, 2013
 Support for Cordova 3
 add png mimetype
@@ -43,8 +46,6 @@ Initial release
 REMARKS
 ------------
 Please have in mind, that the plugin can open any local file on your Android device, so in some cases you may have to secure the code better. For example you could store your application folder ``````file:///sdcard/Android/data/com.example.application/`````` in your ``````FileOpener.java`````` file instead of ``````fileopener.js``````. 
-
-You may also change the way the plugin checks file extension (currently it uses simple ``````contains`````` function.
 
 CONTRIBUTION
 -------------
