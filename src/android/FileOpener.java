@@ -57,52 +57,55 @@ public class FileOpener extends CordovaPlugin {
         // Create URI
         Uri uri = Uri.parse(url);
 
+        String[] parts = url.split("\\.");
+        String ext = parts[parts.length - 1].toLowerCase();
+
         Intent intent = null;
         // Check what kind of file you are trying to open, by comparing the url with extensions.
         // When the if condition is matched, plugin sets the correct intent (mime) type,
         // so Android knew what application to use to open the file
 
-        if (url.contains(".doc") || url.contains(".docx")) {
+        if (ext.equals("doc") || ext.equals("docx")) {
             // Word document
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "application/msword");
-        } else if(url.contains(".pdf")) {
+        } else if(ext.equals("pdf")) {
             // PDF file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "application/pdf");
-        } else if(url.contains(".ppt") || url.contains(".pptx")) {
+        } else if(ext.equals("ppt") || ext.equals("pptx")) {
             // Powerpoint file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "application/vnd.ms-powerpoint");
-        } else if(url.contains(".xls") || url.contains(".xlsx")) {
+        } else if(ext.equals("xls") || ext.equals("xlsx")) {
             // Excel file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "application/vnd.ms-excel");
-        } else if(url.contains(".rtf")) {
+        } else if(ext.equals("rtf")) {
             // RTF file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "application/rtf");
-        } else if(url.contains(".wav")) {
+        } else if(ext.equals("wav")) {
             // WAV audio file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "audio/x-wav");
-        } else if(url.contains(".gif")) {
+        } else if(ext.equals("gif")) {
             // GIF file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "image/gif");
-        } else if(url.contains(".jpg") || url.contains(".jpeg")) {
+        } else if(ext.equals("jpg") || ext.equals("jpeg")) {
             // JPG file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "image/jpeg");
-        } else if(url.contains(".png")) {
+        } else if(ext.equals("png")) {
             // PNG file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "image/png");
-        } else if(url.contains(".txt")) {
+        } else if(ext.equals("txt")) {
             // Text file
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "text/plain");
-        } else if(url.contains(".mpg") || url.contains(".mpeg") || url.contains(".mpe") || url.contains(".mp4") || url.contains(".avi")) {
+        } else if(ext.equals("mpg") || ext.equals("mpeg") || ext.equals("mpe") || ext.equals("mp4") || ext.equals("avi")) {
             // Video files
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "video/*");
@@ -114,8 +117,8 @@ public class FileOpener extends CordovaPlugin {
         //in this case, Android will show all applications installed on the device
         //so you can choose which application to use
 
-
-        else {            intent = new Intent(Intent.ACTION_VIEW);
+        else {
+            intent = new Intent(Intent.ACTION_VIEW);
             intent.setDataAndType(uri, "*/*");
         }
 
